@@ -1,2 +1,2 @@
 # etch-a-sketch
-The Oding Project - Project: Etch-a-Sketch
+The Odin Project - Project: Etch-a-Sketch
