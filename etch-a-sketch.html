@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta lang="sv">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div id="setup"><button>New Grid</button></div>
+        <div id="main">
+        </div>
+
+        <script>
+        const mainDiv = document.querySelector("#main");
+        mainDiv.style.height = +mainDiv.clientWidth + "px";
+
+        const button = document.querySelector("button");
+        button.addEventListener("click", createGrid)
+        
+        let dimension;
+        
+        function createGrid() {
+            mainDiv.innerHTML = "";
+            querySquares();
+            mainDiv.style.height = +mainDiv.clientWidth + "px";
+            for(let i=0; i<(dimension**2); i++) {
+                div = document.createElement("div");
+                div.style.height = mainDiv.clientWidth/dimension+"px";
+                div.style["background-color"] = "rgb(255,255,255)";
+                div.setAttribute("class", "pixel");
+                mainDiv.appendChild(div);
+            }
+            mainDiv.style["grid-template-columns"] = "repeat(" + dimension + ",1fr)";
+            colorPixels();
+        }
+
+        function querySquares() {
+            dimension = prompt("How many squares per side?", "");
+        }
+
+    
+
+        let x; let y; let z;
+        function colorPixels() {
+            const pixels = document.querySelectorAll("div.pixel");
+            pixels.forEach(pixel => pixel.addEventListener("mouseover", function(e) {
+
+                currentRGB = e.target.style["background-color"];
+
+                const arr = currentRGB.replace("rgb(","").replace(")","").split(",")
+
+                for( let i = 0; i<3; i++) {
+                    arr[i] = parseInt(arr[i]);
+                }
+
+                const aTenth = 255/10;
+                const x = arr[0]-aTenth;
+                const y = arr[1]-aTenth;
+                const z = arr[2]-aTenth;
+
+                e.target.style["background-color"] = "rgb(" + x + "," + y + "," + z + ")";
+            } ) )
+        }
+        </script>
+    </body>
+</html>

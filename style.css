@@ -1,0 +1,17 @@
+
+
+body {
+    margin:0px 200px 200px 200px;
+}
+
+div#setup {
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align: center;
+}
+
+div#main {
+    margin: 0px;
+    border: 1px solid black;
+    display: grid;
+} 
